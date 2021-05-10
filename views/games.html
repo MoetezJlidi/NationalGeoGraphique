@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="images/LogoVert.svg" />
+    <link rel="stylesheet" type="text/css" href="css/globalRules.css">
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/games.css">
+  
+    <title>ScoreBoard</title>
+    
+</head>
+<body>
+	<nav id="navbar">
+		<h1 class="title"><a href="/">National GéoGraphique</a></h1>
+		<div id="links-container">
+			<a href="/" class="menuLink" id = "homeLink">Accueil</a>
+			<div class="dropdown">
+				<button class="dropbtn">Jeux
+				  <i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+				  <a href="/games">ScoreBoard</a>
+				  <a href="/game">Raining Rubbish</a>
+				  <a href="/quizz">Quizz</a>
+				</div>
+			  </div> 
+			
+			{{#status}}
+			<div id="logContainer" class="{{status}}">
+				<a href="/?action=register" id="login">S'enregistrer ?</a>
+				<div id="user-info">
+					<a href="User">
+						<div id="data">
+							<p>Nom : {{user.name}}</p>
+							<p>Score : {{user.score}}</p>
+						</div>
+					</a>
+					<form action="/logout" method="POST"id="logoutBtn"><input class="btn" type="submit" value="Déconnexion"></form>
+				</div>
+			</div>
+			{{/status}}
+			
+		</div>
+	</nav>
+	<section id="dashboard">
+		<ul id="dashboard-container">
+			<li>
+				<ol class="dashboard" id="global-dashboard">
+				<h3>Global</h3>
+				{{#global_scores}}
+					<li><strong>{{name}}</strong> : <span>{{global}}</span></li>
+				{{/global_scores}}
+			</ol></li>
+
+			<li><ol class="dashboard" id="rainingRubbish-dashboard">
+				<a href="/game" rel="noopener"><h3>It's Raining Rubbish</h3></a>
+				{{#RR_scores}}
+					<li><strong>{{name}}</strong> : <span>{{rainingRubbish}}</span></li>
+				{{/RR_scores}}
+					</ol></li>
+			
+			<li><ol class="dashboard" id="quizz-dashboard">
+				<a href="/quizz" rel="noopener"><h3>Quizz</h3></a>
+				{{#quizz_scores}}
+					<li><strong>{{name}}</strong> : <span>{{quizz}}</span></li>
+				{{/quizz_scores}}
+			</ol></li>
+		</ul>
+	</section>
+</body>

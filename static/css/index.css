@@ -1,0 +1,188 @@
+body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/DesktopBG.jpg");
+    background-size:cover;
+
+}
+
+#intro{
+    position: absolute;
+    top:20vh;left: 15%;
+}
+#titre{
+    position: relative;
+    font-weight: bold;
+    font-size: 3em;
+}
+#slogan {
+    position: relative;
+    font-weight: lighter;
+    font-weight: 200;
+    font-size: 1em;
+    text-align: right;
+    width: 100%;
+}
+
+#welcomeText, #counter{
+    text-align: center;
+    font-weight:100;
+    font-size: 1.2rem;
+}
+
+input{
+    outline: none;
+    margin:5px;
+    padding: 5px;
+    border-radius: 20px;
+    user-select: none;
+}
+
+.btn{
+    background-color: #fff;
+    color:#000;
+}
+
+#login input[type="text"], #login input[type="password"]{
+    position: relative;
+    width: 100%;
+}
+#login{
+    max-width: 400px;
+}
+#navbar{
+    justify-content: space-between;
+}
+#navbar .title{
+    flex-grow: 0;
+}
+/*
+#login .entry{
+    width:20%;
+    min-width: 125px;
+    background: transparent;
+}*/
+
+
+
+/* Register pop up */
+
+#darker{
+    position: fixed;
+    top: 0;left: 0;
+    background: #000;
+    width:100%;height:100vh;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.displaying{
+    position: fixed;
+    top:0;left:0;
+    width: 100%; height:100vh;
+    background-color: transparent;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.displaying h3{
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.displaying>.container{
+    width: 350px;
+    height: 450px;
+    padding: 50px;
+    background-color: #fff;
+}
+
+.displaying>.container form .btn{
+    border : solid 1px #999;
+}
+
+.displaying>.container form{
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap:wrap ;
+}
+
+.displaying>.container form *{
+    display: block;
+    height: 30px;
+    color:#000;
+}
+
+#logContainer form .entry{
+    background-color: transparent;
+    border: solid 2px #fff;
+}
+
+#logContainer form .btn{
+    background-color: #fff;
+    border: solid 2px #fff;
+    color: #000;
+}
+#logContainer form .entry{
+    border: solid 2px #fff;
+    text-align: center;
+}
+
+@media all and (orientation:portrait){
+    body >*{
+        position: relative;
+    }
+    #intro{
+        position: relative;
+        top: 0;left:0;
+        margin-bottom:30px;
+        padding: 20px;
+    }
+    #intro #titre{
+        font-size: 2rem;
+    }
+    #welcomeText, #counter,#counter *{
+        font-size: 1em;
+    }
+    #slogan{
+        text-align: center;
+        font-size: 1rem;
+    }
+    #welcomeText,#counter{
+        font-size: 0.9rem;
+    }
+
+    #navbar #login{
+        flex-wrap: wrap;
+    }
+    #login{
+        max-width: 150px;
+    }
+    #navbar .title a{
+        font-size: 1rem;
+        display: block;
+        width: 70px;
+    }
+    #user-info{
+        flex-direction: column;
+    }
+    #navbar{
+        height:20vh;
+        padding: 10px;
+        margin: 0;
+    }
+    .info{
+        top:20vh;
+        padding:10px;
+        font-size: 0.75rem;
+    }
+
+    .title::after{
+        display: none;
+        content: '';
+    }
+}

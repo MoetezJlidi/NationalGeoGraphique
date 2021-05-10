@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>National GéoGraphique</title>
+        <link rel="shortcut icon" type="image/x-icon" href="images/LogoVert.svg" />
+        <link rel="stylesheet" type="text/css" href="/css/globalRules.css">
+        <link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="/css/index.css">
+    </head>
+    <body>
+        <nav id="navbar">
+            <h1 class="title"><a href="/">National GéoGraphique</a></h1>
+                <a href="/" class="menuLink" id = "homeLink">Accueil</a>
+                 <div class="dropdown">
+                    <button class="dropbtn">Jeux
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="/games">ScoreBoard</a>
+                      <a href="/game">Raining Rubbish</a>
+                      <a href="/quizz">Quizz</a>
+                    </div>
+                  </div> 
+                {{#status}}
+                <div id="logContainer" class="{{status}}">
+                    <form action="/login" method="POST" id="login">
+                        <input class="entry" type="text" name="user" placeholder="Nom d'utilisateur">
+                        <input class="entry" type="password" name="password" placeholder="Mot de passe">
+                        <input class="btn" type="submit" value="Se connecter">
+                     
+                    </form>
+                    
+                    <div id="user-info">
+                        <a href="User">
+                            <div id="data">
+                                <p>Nom : {{user.name}}</p>
+                                <p>Score : {{user.score}}</p>
+                            </div>
+                        </a>
+                        <form action="/logout" method="POST" id="logoutBtn"><input class="btn" type="submit" value="Déconnexion"></form>
+                    </div>
+                </div>
+                {{/status}}
+            </div>
+        </nav>
+
+    {{#info}}<div class="info">{{info.text}}</div>{{/info}}
+        
+    
+    <div id="intro">
+        <h1 id="titre">Green Situation</h1>  
+        <h3 id= "slogan">Because our Earth is essential</h3>
+    </div>
+    
+    <p id="welcomeText">Bienvenue sur Trash-Counter !</p>  
+    <p id="counter"><strong id="currentCount"></strong> de tonnes de déchets ont été jetées<br>depuis le début de l'année </p>
+
+    {{#action}}
+        <div class={{action.class}}>
+            <a href="/" id="darker"></a>
+            <div class="container">
+                <h3>Inscrivez-vous !</h3>
+                <form action="/new-user" method="POST" id="sign-up">
+                    <input class="entry" type="text" name="user" placeholder="Nom d'utilisateur">
+                    <input class="entry" type="password" name="password" placeholder="Mot de passe">
+                    <input class="entry" type="password" name="confirm" placeholder="Confirmation">
+                    <input class="btn" type="submit" value="S'inscrire">
+                </form>
+            </div>
+        </div>  
+    {{/action}}
+    <script type='text/javascript' defer>
+        function showRGPD(){
+            if(window.location.href.split("/")[window.location.href.split("/").length-1] == ''){
+                if(!document.getElementById("logContainer").classList.contains('logged')) window.alert("Notre site utilise des cookies pour son bon fonctionnement.\nToute information personnelle rentrée sur le site ne sera en aucun cas utilisée à d'autres fin que ce site,\nvous pouvez supprimer toutes vos données à tout moment dans l'onglet /user.")
+            }
+        }
+        window.setTimeout(showRGPD,100);
+        
+    </script>
+    <script src="js/indexRender.js" defer></script>
+</body>
+</html>

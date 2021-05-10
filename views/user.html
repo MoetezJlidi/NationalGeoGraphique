@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="images/LogoVert.svg" />
+    <link rel="stylesheet" type="text/css" href="/css/globalRules.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+    
+    
+    <title>Infos de {{user.name}}</title>
+</head>
+<body>
+    <nav id="navbar">
+        <h1 class="title"><a href="/">National GéoGraphique</a></h1>
+        <div id="links-container">
+            <a href="/" class="menuLink" id = "homeLink">Accueil</a>
+            <div class="dropdown">
+				<button class="dropbtn">Jeux
+				  <i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+				  <a href="/games">ScoreBoard</a>
+				  <a href="/game">Raining Rubbish</a>
+				  <a href="/quizz">Quizz</a>
+				</div>
+			  </div> 
+            <div id="logContainer" class="{{status}}">
+                <div id="user-info">
+                    <a href="/User">
+                        <div id="data">
+                            <p>Nom : {{user.name}}</p>
+                            <p>Score : {{user.score}}</p>
+                        </div>
+                    </a>
+                    <form action="/logout" method="POST"id="logoutBtn"><input class="btn" type="submit" value="Déconnexion"></form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="page-content">
+        <div id="main-container">
+            <h3 class="container" id="title">Informations de {{user.name}}</h3>
+            <div class="container" id="user-data">
+                <h4 id="data-title" class="title">Données</h4>
+                <ul>
+                    <li>Nom : {{user.name}}</li>
+                    <li>Mot de passe : {{user.password}}</li>
+                    <li>Role : {{user.role}}</li>
+                    <li>Score Global : {{scores.global}}</li>
+                    <li>Score Raining Rubbish : {{scores.rainingRubbish}}</li>
+                    <li>Score Quizz : {{scores.quizz}}</li>
+                    <li>Date de naissance : <span id="user-dob">{{user.date_of_birth}}</span> </li>
+                </ul>
+            </div>
+            <div class="container" id="options">
+                <h4 id="options-title" class="title">Options</h4>
+                <form action="/modify-user" method="POST" class="options-form">
+                    <div id="inputTexts">
+                        <input type="text" name="user_name"  class="option" placeholder="Modifier nom d'utilisateur">
+                        <input type="text" name="user_pass" placeholder="Modifier mot de passe" class="option">
+                        <input type="text" name="user_birth" placeholder="Modifier date de naissance" placeholder="DD/MM/YYYY" class="option">
+                    </div>
+                    <div id="otherInput">
+                        <span><input id="reset-scores" type="checkbox" name="reset_scores" class="option"> Réinitialiser les scores</span>
+                        <input type="submit" class="option" value="Enregistrer">
+                    </div>
+                    
+                </form>
+                <a href="#delete" class="option">Supprimer utilisateur</a>
+                <form action="/delete-user" method="POST" id="delete" class="options-form">
+                    <input type="submit" value="Supprimer" class="option">
+                </form>
+            </div>
+            <div class="container" id="user-counter">
+                <h4 id="counter-title" class="title">Compteur</h4>
+                <p id="counter">Date de naissance incorrecte, le compteur de dechet ne peut pas fonctionner</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="js/userCounter.js" defer></script>
+</body>
+</html>

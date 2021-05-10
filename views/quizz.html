@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="shortcut icon" type="image/x-icon" href="images/LogoVert.svg" />
+    <link rel="stylesheet" href="css/quizz.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/globalRules.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <title>Quizz Games</title>
+</head>
+
+<body>
+    <nav id="navbar">
+        <h1 class="title"><a href="/">National GéoGraphique</a></h1>
+            <a href="/" class="menuLink" id = "homeLink">Accueil</a>
+             <div class="dropdown">
+                <button class="dropbtn">Jeux
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="/games">ScoreBoard</a>
+                  <a href="/game">Raining Rubbish</a>
+                  <a href="/quizz">Quizz</a>
+                </div>
+              </div> 
+              {{#status}}
+              <div id="logContainer" class="{{status}}">
+                  <a href="/?action=register" id="login">S'enregistrer ?</a>
+                  <div id="user-info">
+                      <a href="User">
+                          <div id="data">
+                              <p>Nom : {{user.name}}</p>
+                              <p>Score : {{user.score}}</p>
+                          </div>
+                      </a>
+                      <form action="/logout" method="POST"id="logoutBtn"><input class="btn" type="submit" value="Déconnexion"></form>
+                  </div>
+              </div>
+              {{/status}}
+        </div>
+    </nav>
+
+
+<!--Quizz-->
+	<div class="container">
+        
+      
+		<div class="wrapper"><div class ="modal-text-bigger">Environement Quizz</div>
+			<div id="show-score" class="modal-text {{style.score}}">Vous avez <span id="right-answers" class="count">{{score}}</span> points !</div>
+			<form id='form-result' class="{{style.formResult}}" action="">					
+				<div class="modal-text-bigger">Fini !</div>
+				<br>
+				<div class="modal-text">Vous avez eu {{score}} bonnes réponses</div>
+				<br>
+				<div class="modal-text"> 
+				<span id="answers-percent">{{percent}}</span>% de vos réponses sont bonnes</div> 
+			</form>
+
+            <div id="question-container" class="{{style.questionsContainer}}">
+				<div class="number-of-question-text">Question № <span id="current-question">{{index}}</span> of <span id="all-questions2">{{maxIndex}}</span></div>
+				<div id="question">{{question.question}}</div>
+				<div id="answer-buttons">
+					<form action="/answer" class="{{style.answer1}}" method="post">
+						<input type="hidden" name="choice" value="1">
+						<input type="submit" {{disabled}} class="btn" value="{{question.answer1}}"></input>
+					</form>
+					<form action="/answer" class="{{style.answer2}}" method="post">
+						<input type="hidden" name="choice" value="2">
+						<input type="submit" {{disabled}} class="btn" value="{{question.answer2}}"></input>
+					</form>
+					<form action="/answer" class="{{style.answer3}}" method="post">
+						<input type="hidden" name="choice" value="3">
+						<input type="submit" {{disabled}} class="btn" value="{{question.answer3}}"></input>
+					</form>
+					<form action="/answer" class="{{style.answer4}}" method="post">
+						<input type="hidden" name="choice" value="4">
+						<input type="submit" {{disabled}} class="btn" value="{{question.answer4}}"></input>
+					</form>
+              	</div>
+            </div>
+            <div class="controls">
+				<form action="/quizz/start" class="{{style.startBtn}}" method="post">
+					<input type="submit"  value="Commencer">
+				</form>
+				<form action="/quizz/next" class="{{style.nextBtn}}" method="post">
+					<input type="submit"  value="Next">
+				</form> 
+				<form action="/quizz-end" class="{{style.endBtn}}" method="post">
+					<input type="submit"  value="Terminer">
+				</form>
+            </div>
+    	</div>
+	</div>
+</body>
+</html>
